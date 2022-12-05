@@ -2,6 +2,7 @@
 Studi Kasus Absensi Harian DayCare*/
   
 #include<iostream>
+#include<cstdlib>
 using namespace std;
 
 //////////////////// PAGE PENENTUAN NOMOR IDENTITAS ANAK SAAT PENDAFTARAN /////////////////////////////
@@ -27,7 +28,12 @@ void pendaftaran(){
 	cout<<" \n Alamat Saat Ini              : ";cin>>alamatsaatini;getline(cin, alamatsaatini);
 	cout<<" \n Alamat Kantor                : ";cin>>alamatkantor;getline(cin, alamatkantor);
 	cout<<endl;
-	cout<<" Nama: "<<namaanak<<", Usia: "<<usia<<", Riwayat Penyakit/Alergi: "<<alergipenyakit<<endl;
+	cout<<" ============================================================================="<<endl;
+	cout<<" Nama \t\t\t\t: "<<namaanak;
+	cout<<" Usia \t\t\t\t: "<<usia;
+	cout<<" Riwayat Penyakit/Alergi \t: "<<alergipenyakit;
+	cout<<" Nomor induk anak \t\t: "<<rand() % 100<<endl;
+	cout<<" ============================================================================="<<endl;
 }
 //////////////// MENU 2 ABSENSI KEDATANGAN ANAK ////////////////////
 void absensidatang(){
@@ -105,8 +111,8 @@ void login(){
 		cout<<" Masukkan Password : ";cin>>pass;
 		cout<<endl;
 		
-		realusername = "dutafirdaus";
-		realpass = "dutafirdausterbaik";
+		realusername = "daycare";
+		realpass = "kel4";
 		
 		if(username == realusername && pass == realpass){
 			do{
