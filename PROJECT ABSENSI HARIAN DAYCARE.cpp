@@ -3,12 +3,10 @@ Studi Kasus Absensi Harian DayCare*/
   
 #include<iostream>
 #include<cstdlib>
+#include<ctime>
+#include<windows.h>
 using namespace std;
 
-//////////////////// PAGE PENENTUAN NOMOR IDENTITAS ANAK SAAT PENDAFTARAN /////////////////////////////
-/*string nomoridentitas(){
-	
-} */
 ///////////////// MENU 1 PENDAFTARAN ANAK //////////////////////////
 void pendaftaran(){
 	string namaortu, namaanak, alergipenyakit, pekerjaanortu, alamatasal, alamatsaatini, alamatkantor;
@@ -29,19 +27,37 @@ void pendaftaran(){
 	cout<<" \n Alamat Kantor                : ";cin>>alamatkantor;getline(cin, alamatkantor);
 	cout<<endl;
 	cout<<" ============================================================================="<<endl;
-	cout<<" Nama \t\t\t\t: "<<namaanak;
-	cout<<" Usia \t\t\t\t: "<<usia;
-	cout<<" Riwayat Penyakit/Alergi \t: "<<alergipenyakit;
+	cout<<" Nama \t\t\t\t: "<<namaanak<<endl;
+	cout<<" Usia \t\t\t\t: "<<usia<<endl;
+	cout<<" Riwayat Penyakit/Alergi \t: "<<alergipenyakit<<endl;
 	cout<<" Nomor induk anak \t\t: "<<rand() % 100<<endl;
 	cout<<" ============================================================================="<<endl;
 }
 //////////////// MENU 2 ABSENSI KEDATANGAN ANAK ////////////////////
 void absensidatang(){
-	
+	int noinduk;
+	cout<<" ======================"<<endl;
+	cout<<" = Absensi Kedatangan ="<<endl;
+	cout<<" ======================"<<endl;
+	cout<<endl;
+	cout<<" ======================================"<<endl;
+	cout<<" Nomor induk anak \t: ";cin>>noinduk;
+	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
+	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
+	cout<<" ======================================"<<endl;
 }
 //////////////// MENU 3 ABSENSI KEPULANGAN ANAK ///////////////////
 void absensipulang(){
-	
+	int noinduk;
+	cout<<" ======================"<<endl;
+	cout<<" = Absensi Kepulangan ="<<endl;
+	cout<<" ======================"<<endl;
+	cout<<endl;
+	cout<<" ======================================"<<endl;
+	cout<<" Nomor induk anak \t: ";cin>>noinduk;
+	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
+	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
+	cout<<" ======================================"<<endl;
 }
 //////////////// MENU 4 LAPORAN ABSENSI SELURUH ANAK DI DAYCARE ////////////////////////
 void laporanabsensi(){
@@ -68,22 +84,18 @@ int menu(){
 		switch(menu){
 			case 1:
 				system("cls");
-				cout<<endl;
 				pendaftaran();
 			break;
 			case 2:
 				system("cls");
-				cout<<endl;
 				absensidatang();
 			break;
 			case 3:
 				system("cls");
-				cout<<endl;
-				absensipulang;
+				absensipulang();
 			break;
 			case 4:
 				system("cls");
-				cout<<endl;
 				laporanabsensi();
 			break;
 		default:
@@ -115,12 +127,6 @@ void login(){
 		realpass = "kel4";
 		
 		if(username == realusername && pass == realpass){
-			do{
-				cout<<endl;
-				menu();
-				system("cls");
-				cout<<" \n Kembali Ke Menu? <y/n> ";cin>>kembali;
-			}while(kembali == "y");
 			cout<<endl;
 			system("pause");
 			break;
