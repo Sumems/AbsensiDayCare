@@ -1,37 +1,48 @@
-/*PROJECT DASPRO DAN PRPL
-Studi Kasus Absensi Harian DayCare*/
-  
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
 #include<windows.h>
+#include<fstream>
 using namespace std;
 
 ///////////////// MENU 1 PENDAFTARAN ANAK //////////////////////////
 void pendaftaran(){
 	string namaortu, namaanak, alergipenyakit, pekerjaanortu, alamatasal, alamatsaatini, alamatkantor;
 	int usia;
-	
+	ofstream dataPendaftaran;
+
 	cout<<" ========================= "<<endl;
 	cout<<" ====== PENDAFTARAN ====== "<<endl;
 	cout<<" ======== DAYCARE ======== "<<endl;
 	cout<<" ========================= "<<endl;
 	cout<<endl;
-	cout<<" Masukkan Nama Orang Tua      : ";cin>>namaortu;getline(cin, namaortu);
-	cout<<" \n Masukkan Nama Anak           : ";cin>>namaanak;getline(cin, namaanak);
+	cout<<" Masukkan Nama Orang Tua      : ";cin.ignore();getline(cin, namaortu);
+	cout<<" \n Masukkan Nama Anak           : ";getline(cin, namaanak);
 	cout<<" \n Masukkan Usia Anak           : ";cin>>usia;
-	cout<<" \n Riwayat Penyakit/Alergi Anak : ";cin>>alergipenyakit;getline(cin, alergipenyakit);
-	cout<<" \n Pekerjaan Orang Tua          : ";cin>>pekerjaanortu;getline(cin, pekerjaanortu);
-	cout<<" \n Alamat Asal                  : ";cin>>alamatasal;getline(cin, alamatasal);
-	cout<<" \n Alamat Saat Ini              : ";cin>>alamatsaatini;getline(cin, alamatsaatini);
-	cout<<" \n Alamat Kantor                : ";cin>>alamatkantor;getline(cin, alamatkantor);
+	cout<<" \n Riwayat Penyakit/Alergi Anak : ";cin.ignore();getline(cin, alergipenyakit);
+	cout<<" \n Pekerjaan Orang Tua          : ";getline(cin, pekerjaanortu);
+	cout<<" \n Alamat Asal                  : ";getline(cin, alamatasal);
+	cout<<" \n Alamat Saat Ini              : ";getline(cin, alamatsaatini);
+	cout<<" \n Alamat Kantor                : ";getline(cin, alamatkantor);
 	cout<<endl;
 	cout<<" ============================================================================="<<endl;
 	cout<<" Nama \t\t\t\t: "<<namaanak<<endl;
-	cout<<" Usia \t\t\t\t: "<<usia<<endl;
+	cout<<" Usia \t\t\t\t: "<<usia<<" Tahun"<<endl;
 	cout<<" Riwayat Penyakit/Alergi \t: "<<alergipenyakit<<endl;
 	cout<<" Nomor induk anak \t\t: "<<rand() % 100<<endl;
 	cout<<" ============================================================================="<<endl;
+
+	dataPendaftaran.open("Data Anggota.txt", ios::app);
+	dataPendaftaran<<"Masukkan Nama Orang Tua		: " << namaortu << endl;
+	dataPendaftaran<<"Masukkan Nama Anak			: " << namaanak << endl;
+	dataPendaftaran<<"Masukkan Usia Anak			: " << usia <<" Tahun"<< endl;
+	dataPendaftaran<<"Riwayat Penyakit/Alergi Anak	: " << alergipenyakit << endl;
+	dataPendaftaran<<"Pekerjaan Orang Tua			: " << pekerjaanortu << endl;
+	dataPendaftaran<<"Alamat Asal					: " << alamatasal << endl;
+	dataPendaftaran<<"Alamat Saat Ini				: " << alamatsaatini << endl;
+	dataPendaftaran<<"Alamat Kantor					: " << alamatkantor << endl;
+	dataPendaftaran<<"Nomor induk anak				: "<<rand() % 100<<endl;
+	dataPendaftaran.close();
 }
 //////////////// MENU 2 ABSENSI KEDATANGAN ANAK ////////////////////
 void absensidatang(){
@@ -112,7 +123,6 @@ int menu(){
 void login(){
 	string username, realusername, pass, realpass, kembali;
 	
-	
 	for(int i = 2; i >= 0; --i){
 		system("cls");
 		cout<<" ===================="<<endl;
@@ -128,6 +138,8 @@ void login(){
 		
 		if(username == realusername && pass == realpass){
 			cout<<endl;
+			menu();
+			system("cls");
 			system("pause");
 			break;
 		}else if(i > 0){
