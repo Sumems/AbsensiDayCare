@@ -5,9 +5,14 @@
 #include<fstream>
 using namespace std;
 
+int nomorInduk(){
+	unsigned int sama = static_cast<unsigned int>(time(nullptr));
+	srand(sama);
+	return rand()%100;
+}
 ///////////////// MENU 1 PENDAFTARAN ANAK //////////////////////////
 void pendaftaran(){
-	string namaortu, namaanak, alergipenyakit, pekerjaanortu, alamatasal, alamatsaatini, alamatkantor;
+	string namaOrtu, namaAnak, alergiPenyakit, pekerjaanOrtu, alamatAsal, alamatSaatIni, alamatKantor;
 	int usia;
 	ofstream dataPendaftaran;
 
@@ -16,56 +21,58 @@ void pendaftaran(){
 	cout<<" ======== DAYCARE ======== "<<endl;
 	cout<<" ========================= "<<endl;
 	cout<<endl;
-	cout<<" Masukkan Nama Orang Tua      : ";cin.ignore();getline(cin, namaortu);
-	cout<<" \n Masukkan Nama Anak           : ";getline(cin, namaanak);
-	cout<<" \n Masukkan Usia Anak           : ";cin>>usia;
-	cout<<" \n Riwayat Penyakit/Alergi Anak : ";cin.ignore();getline(cin, alergipenyakit);
-	cout<<" \n Pekerjaan Orang Tua          : ";getline(cin, pekerjaanortu);
-	cout<<" \n Alamat Asal                  : ";getline(cin, alamatasal);
-	cout<<" \n Alamat Saat Ini              : ";getline(cin, alamatsaatini);
-	cout<<" \n Alamat Kantor                : ";getline(cin, alamatkantor);
+	cout<<" Masukkan Nama Orang Tua      : ";cin.ignore();getline(cin, namaOrtu);
+	cout<<" Masukkan Nama Anak           : ";getline(cin, namaAnak);
+	cout<<" Masukkan Usia Anak           : ";cin>>usia;
+	cout<<" Riwayat Penyakit/Alergi Anak : ";cin.ignore();getline(cin, alergiPenyakit);
+	cout<<" Pekerjaan Orang Tua          : ";getline(cin, pekerjaanOrtu);
+	cout<<" Alamat Asal                  : ";getline(cin, alamatAsal);
+	cout<<" Alamat Saat Ini              : ";getline(cin, alamatSaatIni);
+	cout<<" Alamat Kantor                : ";getline(cin, alamatKantor);
 	cout<<endl;
 	cout<<" ============================================================================="<<endl;
-	cout<<" Nama \t\t\t\t: "<<namaanak<<endl;
-	cout<<" Usia \t\t\t\t: "<<usia<<" Tahun"<<endl;
-	cout<<" Riwayat Penyakit/Alergi \t: "<<alergipenyakit<<endl;
-	cout<<" Nomor induk anak \t\t: "<<rand() % 100<<endl;
+	cout<<" Nama \t\t\t\t: "<< namaAnak << endl;
+	cout<<" Usia \t\t\t\t: "<< usia <<" Tahun"<< endl;
+	cout<<" Riwayat Penyakit/Alergi \t: "<< alergiPenyakit << endl;
+	cout<<" Nomor induk anak \t\t: "<< nomorInduk() << endl;
 	cout<<" ============================================================================="<<endl;
 
 	dataPendaftaran.open("Data Anggota.txt", ios::app);
-	dataPendaftaran<<"Masukkan Nama Orang Tua		: " << namaortu << endl;
-	dataPendaftaran<<"Masukkan Nama Anak			: " << namaanak << endl;
-	dataPendaftaran<<"Masukkan Usia Anak			: " << usia <<" Tahun"<< endl;
-	dataPendaftaran<<"Riwayat Penyakit/Alergi Anak	: " << alergipenyakit << endl;
-	dataPendaftaran<<"Pekerjaan Orang Tua			: " << pekerjaanortu << endl;
-	dataPendaftaran<<"Alamat Asal					: " << alamatasal << endl;
-	dataPendaftaran<<"Alamat Saat Ini				: " << alamatsaatini << endl;
-	dataPendaftaran<<"Alamat Kantor					: " << alamatkantor << endl;
-	dataPendaftaran<<"Nomor induk anak				: "<<rand() % 100<<endl;
+	dataPendaftaran<<"============================================================================="<<endl;
+	dataPendaftaran<<"Masukkan Nama Orang Tua       : " << namaOrtu << endl;
+	dataPendaftaran<<"Masukkan Nama Anak            : " << namaAnak << endl;
+	dataPendaftaran<<"Masukkan Usia Anak            : " << usia <<" Tahun"<< endl;
+	dataPendaftaran<<"Riwayat Penyakit/Alergi Anak  : " << alergiPenyakit << endl;
+	dataPendaftaran<<"Pekerjaan Orang Tua           : " << pekerjaanOrtu << endl;
+	dataPendaftaran<<"Alamat Asal                   : " << alamatAsal << endl;
+	dataPendaftaran<<"Alamat Saat Ini               : " << alamatSaatIni << endl;
+	dataPendaftaran<<"Alamat Kantor                 : " << alamatKantor << endl;
+	dataPendaftaran<<"Nomor induk anak              : " << nomorInduk() << endl;
+	dataPendaftaran<<"============================================================================="<<endl;
 	dataPendaftaran.close();
 }
 //////////////// MENU 2 ABSENSI KEDATANGAN ANAK ////////////////////
 void absensidatang(){
-	int noinduk;
+	int noInduk;
 	cout<<" ======================"<<endl;
 	cout<<" = Absensi Kedatangan ="<<endl;
 	cout<<" ======================"<<endl;
 	cout<<endl;
 	cout<<" ======================================"<<endl;
-	cout<<" Nomor induk anak \t: ";cin>>noinduk;
+	cout<<" Nomor induk anak \t: ";cin>>noInduk;
 	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
 	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
 	cout<<" ======================================"<<endl;
 }
 //////////////// MENU 3 ABSENSI KEPULANGAN ANAK ///////////////////
 void absensipulang(){
-	int noinduk;
+	int noInduk;
 	cout<<" ======================"<<endl;
 	cout<<" = Absensi Kepulangan ="<<endl;
 	cout<<" ======================"<<endl;
 	cout<<endl;
 	cout<<" ======================================"<<endl;
-	cout<<" Nomor induk anak \t: ";cin>>noinduk;
+	cout<<" Nomor induk anak \t: ";cin>>noInduk;
 	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
 	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
 	cout<<" ======================================"<<endl;
@@ -134,7 +141,7 @@ void login(){
 		cout<<endl;
 		
 		realusername = "daycare";
-		realpass = "kel4";
+		realpass = "kelompok4";
 		
 		if(username == realusername && pass == realpass){
 			cout<<endl;
