@@ -1,3 +1,12 @@
+/*
+	KELOMPOK 4
+	PROJECT ABSENSI HARIAN DAYCARE
+	1. Aldi Muharamdhani		(2205814) 
+	2. Andina Renita Zahara		(2208991) 
+	3. Muhammad Dzakkir Kilman S	(2204913) 
+	4. Ummam Hoerussifa		(2203036)
+
+*/
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
