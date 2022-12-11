@@ -82,11 +82,13 @@ void absensiPulang(){
 	cout<<" Pukul\t\t\t: "<<__TIME__<<endl;
 	cout<<" ================================================\n";
 }
+
 ///////////////// MENU 4 LAPORAN ABSENSI SELURUH ANAK DI DAYCARE /////////////////
 void laporanAbsensi(){
 	
 }
-///////////////// DAFTAR MENU UTAMA /////////////////
+
+///////////////// DAFTAR MENU BERANDA UTAMA /////////////////
 int menu(){
 	string ulang;
 	int menu;
@@ -131,6 +133,7 @@ int menu(){
 	
 	return(menu);
 }
+
 ///////////////// PAGE LOGIN PETUGAS /////////////////
 void login(){
 	string username, realusername, pass, realpass, kembali;
