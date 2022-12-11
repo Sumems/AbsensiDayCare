@@ -6,8 +6,7 @@
 using namespace std;
 
 int nomorInduk(){
-	unsigned int sama = static_cast<unsigned int>(time(nullptr));
-	srand(sama);
+	srand(time(nullptr));
 	return rand()%100;
 }
 ///////////////// MENU 1 PENDAFTARAN ANAK //////////////////////////
