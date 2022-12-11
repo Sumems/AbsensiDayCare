@@ -5,20 +5,22 @@
 #include<fstream>
 using namespace std;
 
+///////////////// NOMOR INDUK /////////////////
 int nomorInduk(){
 	srand(time(nullptr));
 	return rand()%100;
 }
-///////////////// MENU 1 PENDAFTARAN ANAK //////////////////////////
+
+///////////////// MENU 1 PENDAFTARAN ANAK /////////////////
 void pendaftaran(){
 	string namaOrtu, namaAnak, alergiPenyakit, pekerjaanOrtu, alamatAsal, alamatSaatIni, alamatKantor;
 	int usia;
 	ofstream dataPendaftaran;
 
-	cout<<" ========================= "<<endl;
-	cout<<" ====== PENDAFTARAN ====== "<<endl;
-	cout<<" ======== DAYCARE ======== "<<endl;
-	cout<<" ========================= "<<endl;
+	cout<<" ===============================================\n";
+	cout<<" ===============   PENDAFTARAN   ===============\n";
+	cout<<" =================   DAYCARE   =================\n";
+	cout<<" ===============================================\n";
 	cout<<endl;
 	cout<<" Masukkan Nama Orang Tua      : ";cin.ignore();getline(cin, namaOrtu);
 	cout<<" Masukkan Nama Anak           : ";getline(cin, namaAnak);
@@ -29,15 +31,17 @@ void pendaftaran(){
 	cout<<" Alamat Saat Ini              : ";getline(cin, alamatSaatIni);
 	cout<<" Alamat Kantor                : ";getline(cin, alamatKantor);
 	cout<<endl;
-	cout<<" ============================================================================="<<endl;
+
+	///////////////// LAPORAN PENDAFTARAN /////////////////
+	cout<<" ==============================================\n";
 	cout<<" Nama \t\t\t\t: "<< namaAnak << endl;
 	cout<<" Usia \t\t\t\t: "<< usia <<" Tahun"<< endl;
 	cout<<" Riwayat Penyakit/Alergi \t: "<< alergiPenyakit << endl;
 	cout<<" Nomor induk anak \t\t: "<< nomorInduk() << endl;
-	cout<<" ============================================================================="<<endl;
+	cout<<" ==============================================\n";
 
-	dataPendaftaran.open("Data Anggota.txt", ios::app);
-	dataPendaftaran<<"============================================================================="<<endl;
+	dataPendaftaran.open("Data Anak.csv", ios::app);
+	dataPendaftaran<<"=============================================="<<endl;
 	dataPendaftaran<<"Masukkan Nama Orang Tua       : " << namaOrtu << endl;
 	dataPendaftaran<<"Masukkan Nama Anak            : " << namaAnak << endl;
 	dataPendaftaran<<"Masukkan Usia Anak            : " << usia <<" Tahun"<< endl;
@@ -47,54 +51,56 @@ void pendaftaran(){
 	dataPendaftaran<<"Alamat Saat Ini               : " << alamatSaatIni << endl;
 	dataPendaftaran<<"Alamat Kantor                 : " << alamatKantor << endl;
 	dataPendaftaran<<"Nomor induk anak              : " << nomorInduk() << endl;
-	dataPendaftaran<<"============================================================================="<<endl;
+	dataPendaftaran<<"=============================================="<<endl;
 	dataPendaftaran.close();
 }
-//////////////// MENU 2 ABSENSI KEDATANGAN ANAK ////////////////////
-void absensidatang(){
+
+///////////////// MENU 2 ABSENSI KEDATANGAN ANAK /////////////////
+void absensiDatang(){
 	int noInduk;
-	cout<<" ======================"<<endl;
-	cout<<" = Absensi Kedatangan ="<<endl;
-	cout<<" ======================"<<endl;
+	cout<<" ================================================\n";
+	cout<<" ============   Absensi Kedatangan   ============\n";
+	cout<<" ================================================\n";
 	cout<<endl;
-	cout<<" ======================================"<<endl;
+	cout<<" ================================================\n";
 	cout<<" Nomor induk anak \t: ";cin>>noInduk;
 	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
 	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
-	cout<<" ======================================"<<endl;
+	cout<<" ================================================\n";
 }
-//////////////// MENU 3 ABSENSI KEPULANGAN ANAK ///////////////////
-void absensipulang(){
+
+///////////////// MENU 3 ABSENSI KEPULANGAN ANAK /////////////////
+void absensiPulang(){
 	int noInduk;
-	cout<<" ======================"<<endl;
-	cout<<" = Absensi Kepulangan ="<<endl;
-	cout<<" ======================"<<endl;
+	cout<<" ================================================\n";
+	cout<<" ============   Absensi Kepulangan   ============\n";
+	cout<<" ================================================\n";
 	cout<<endl;
-	cout<<" ======================================"<<endl;
-	cout<<" Nomor induk anak \t: ";cin>>noInduk;
-	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
-	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
-	cout<<" ======================================"<<endl;
+	cout<<" ================================================\n";
+	cout<<" Nomor induk anak\t: ";cin>>noInduk;
+	cout<<" Tanggal\t\t: "<<__DATE__<<endl;
+	cout<<" Pukul\t\t\t: "<<__TIME__<<endl;
+	cout<<" ================================================\n";
 }
-//////////////// MENU 4 LAPORAN ABSENSI SELURUH ANAK DI DAYCARE ////////////////////////
-void laporanabsensi(){
+///////////////// MENU 4 LAPORAN ABSENSI SELURUH ANAK DI DAYCARE /////////////////
+void laporanAbsensi(){
 	
 }
-////////////// DAFTAR MENU UTAMA //////////////////////////
+///////////////// DAFTAR MENU UTAMA /////////////////
 int menu(){
 	string ulang;
 	int menu;
 	
 	do{
 		system("cls");
-		cout<<" ==================="<<endl;
-		cout<<" ====== MENU ======="<<endl;
-		cout<<" ==================="<<endl;
+		cout<<" =========================================\n";
+		cout<<" ==============   BERANDA   ==============\n";
+		cout<<" =========================================\n";
 		cout<<endl;
-		cout<<" 1. Pendaftaran "<<endl;
-		cout<<" 2. Absensi Datang "<<endl;
-		cout<<" 3. Absensi Pulang "<<endl;
-		cout<<" 4. Laporan Absensi "<<endl;
+		cout<<" [1] Pendaftaran\n";
+		cout<<" [2] Absensi Datang\n";
+		cout<<" [3] Absensi Pulang\n";
+		cout<<" [4] Laporan Absensi\n";
 		cout<<" \n Pilih Menu: ";cin>>menu;
 		
 		system("cls");
@@ -105,15 +111,15 @@ int menu(){
 			break;
 			case 2:
 				system("cls");
-				absensidatang();
+				absensiDatang();
 			break;
 			case 3:
 				system("cls");
-				absensipulang();
+				absensiPulang();
 			break;
 			case 4:
 				system("cls");
-				laporanabsensi();
+				laporanAbsensi();
 			break;
 		default:
 			cout<<" ERROR "<<endl;
@@ -125,15 +131,15 @@ int menu(){
 	
 	return(menu);
 }
-//////////// PAGE LOGIN PETUGAS /////////////////
+///////////////// PAGE LOGIN PETUGAS /////////////////
 void login(){
 	string username, realusername, pass, realpass, kembali;
 	
 	for(int i = 2; i >= 0; --i){
 		system("cls");
-		cout<<" ===================="<<endl;
-		cout<<" ====== LOGIN ======="<<endl;
-		cout<<" ===================="<<endl;
+		cout<<" =========================================\n";
+		cout<<" ===============   LOGIN   ===============\n";
+		cout<<" =========================================\n";
 		cout<<endl;
 		cout<<" Masukkan Username : ";cin>>username;
 		cout<<" Masukkan Password : ";cin>>pass;
@@ -159,7 +165,7 @@ void login(){
 		}
 	}
 }
-/////////////// MAIN FUNCITON ////////////////////
+///////////////// MAIN FUNCITON ////////////////////
 int main(){
 	string logout;
 	
@@ -171,9 +177,9 @@ int main(){
 	}while(logout == "y");
 	cout<<endl;
 	system("cls");
-	cout<<" ================================="<<endl;
-	cout<<" = Program Selesai, Terima Kasih.= "<<endl;
-	cout<<" ================================="<<endl;
+	cout<<"\t\t\t=========================================================================\n";
+	cout<<"\t\t\t===================== Program Selesai, Terima Kasih.=====================\n";
+	cout<<"\t\t\t=========================================================================\n";
 	
 	return 0;
 }
