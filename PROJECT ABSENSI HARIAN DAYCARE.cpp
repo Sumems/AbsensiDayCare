@@ -8,20 +8,20 @@
 */
 #include<iostream>
 #include<cstdlib>
-#include<ctime>
+#include<time.h>
 #include<windows.h>
 #include<fstream>
 using namespace std;
 
-///////////////// NOMOR INDUK /////////////////
+///////////////// RANDOM NOMOR INDUK /////////////////
 int nomorInduk(){
-	srand(time(nullptr));
+	srand(time(NULL));
 	return rand()%100;
 }
 
 ///////////////// MENU 1 PENDAFTARAN ANAK /////////////////
 void pendaftaran(){
-	string namaOrtu, namaAnak, alergiPenyakit, pekerjaanOrtu, alamatAsal, alamatSaatIni, alamatKantor;
+	string namaOrtu, namaAnak, alergiPenyakit, pekerjaanOrtu, alamatAsal, alamatSaatIni, alamatKantor, nomorTelepon, NIK;
 	int usia;
 	ofstream dataPendaftaran;
 
@@ -35,7 +35,8 @@ void pendaftaran(){
 	cout<<" Masukkan Usia Anak           : ";cin>>usia;
 	cout<<" Riwayat Penyakit/Alergi Anak : ";cin.ignore();getline(cin, alergiPenyakit);
 	cout<<" Pekerjaan Orang Tua          : ";getline(cin, pekerjaanOrtu);
-	cout<<" Alamat Asal                  : ";getline(cin, alamatAsal);
+	cout<<" Nomor Telepon Orang Tua      : ";cin>>nomorTelepon;
+	cout<<" Alamat Asal                  : ";cin.ignore();getline(cin, alamatAsal);
 	cout<<" Alamat Saat Ini              : ";getline(cin, alamatSaatIni);
 	cout<<" Alamat Kantor                : ";getline(cin, alamatKantor);
 	cout<<endl;
@@ -48,58 +49,103 @@ void pendaftaran(){
 	cout<<" Nomor induk anak \t\t: "<< nomorInduk() << endl;
 	cout<<" ==============================================\n";
 
-	dataPendaftaran.open("Data Anak.csv", ios::app);
-	dataPendaftaran<<"=============================================="<<endl;
-	dataPendaftaran<<"Masukkan Nama Orang Tua       : " << namaOrtu << endl;
-	dataPendaftaran<<"Masukkan Nama Anak            : " << namaAnak << endl;
-	dataPendaftaran<<"Masukkan Usia Anak            : " << usia <<" Tahun"<< endl;
+	dataPendaftaran.open("Data Anak.txt", ios::app);
+	dataPendaftaran<<"====================================================="<<endl;
+	dataPendaftaran<< nomorInduk() << endl;
+	dataPendaftaran<<"Nama Orang Tua                : " << namaOrtu << endl;
+	dataPendaftaran<<"Nama Anak                     : " << namaAnak << endl;
+	dataPendaftaran<<"Usia Anak                     : " << usia <<" Tahun"<< endl;
 	dataPendaftaran<<"Riwayat Penyakit/Alergi Anak  : " << alergiPenyakit << endl;
 	dataPendaftaran<<"Pekerjaan Orang Tua           : " << pekerjaanOrtu << endl;
+	dataPendaftaran<<"Nomor Telepon Orang Tua       : " << nomorTelepon << endl;
 	dataPendaftaran<<"Alamat Asal                   : " << alamatAsal << endl;
 	dataPendaftaran<<"Alamat Saat Ini               : " << alamatSaatIni << endl;
 	dataPendaftaran<<"Alamat Kantor                 : " << alamatKantor << endl;
-	dataPendaftaran<<"Nomor induk anak              : " << nomorInduk() << endl;
-	dataPendaftaran<<"=============================================="<<endl;
+	dataPendaftaran<<"====================================================="<<endl;
 	dataPendaftaran.close();
 }
 
 ///////////////// MENU 2 ABSENSI KEDATANGAN ANAK /////////////////
 void absensiDatang(){
 	int noInduk;
+	ofstream absenDatang;
+	time_t ct=time(0);
+	string waktu=ctime(&ct);
+
 	cout<<" ================================================\n";
 	cout<<" ============   Absensi Kedatangan   ============\n";
 	cout<<" ================================================\n";
 	cout<<endl;
 	cout<<" ================================================\n";
 	cout<<" Nomor induk anak \t: ";cin>>noInduk;
-	cout<<" Tanggal \t\t: "<<__DATE__<<endl;
-	cout<<" Pukul \t\t\t: "<<__TIME__<<endl;
+	cout<<" Waktu \t\t\t: "<< waktu << endl;
 	cout<<" ================================================\n";
+
+	absenDatang.open("Absen Datang.txt", ios::app);
+	absenDatang<<" Nomor induk anak\t: "<< noInduk << endl;
+	absenDatang<<" Waktu\t\t\t: "<< waktu << endl;
+	absenDatang<<" ================================================\n";
+	absenDatang.close();
 }
 
 ///////////////// MENU 3 ABSENSI KEPULANGAN ANAK /////////////////
 void absensiPulang(){
 	int noInduk;
+	ofstream absenPulang;
+	time_t ct=time(0);
+	string waktu=ctime(&ct);
+
 	cout<<" ================================================\n";
 	cout<<" ============   Absensi Kepulangan   ============\n";
 	cout<<" ================================================\n";
 	cout<<endl;
-	cout<<" ================================================\n";
 	cout<<" Nomor induk anak\t: ";cin>>noInduk;
-	cout<<" Tanggal\t\t: "<<__DATE__<<endl;
-	cout<<" Pukul\t\t\t: "<<__TIME__<<endl;
-	cout<<" ================================================\n";
+	cout<<" Waktu\t\t\t: "<<waktu<<endl;
+
+	absenPulang.open("Absen Pulang.txt", ios::app);
+	absenPulang<<" Nomor induk anak\t: "<< noInduk << endl;
+	absenPulang<<" Waktu\t\t\t: "<< waktu << endl;
+	absenPulang<<" ================================================\n";
+	absenPulang.close();
 }
 
 ///////////////// MENU 4 LAPORAN ABSENSI SELURUH ANAK DI DAYCARE /////////////////
 void laporanAbsensi(){
-	
+	ifstream lapDatang("Absen Datang.txt", ios::app), lapPulang("Absen Pulang.txt", ios::app);
+	string line;
+
+	if (lapDatang.is_open()){
+		cout<<" ===================="<<endl;
+		cout<<" = Waktu Kedatangan ="<<endl;
+		cout<<" ===================="<<endl;
+		cout<<endl;
+		while (getline(lapDatang, line)){
+			cout << line << endl;
+		}
+		lapDatang.close();
+	}
+	else{
+		cout<<"File gagal dibuka";
+	}
+	if (lapPulang.is_open()){
+		cout<<endl;
+		cout<<" ===================="<<endl;
+		cout<<" = Waktu Kepulangan ="<<endl;
+		cout<<" ===================="<<endl;
+		while (getline(lapPulang, line)){
+			cout << line << endl;
+		}
+		lapPulang.close();
+	}
+	else{
+		cout<<"File gagal dibuka";
+	}
 }
 
 ///////////////// DAFTAR MENU BERANDA UTAMA /////////////////
 int menu(){
-	string ulang;
-	int menu;
+	string ulang1, ulang2;
+	int menu, laporan;
 	
 	do{
 		system("cls");
@@ -130,15 +176,15 @@ int menu(){
 			case 4:
 				system("cls");
 				laporanAbsensi();
+
 			break;
 		default:
 			cout<<" ERROR "<<endl;
 		}
-		cout<<" \n Ulangi? <y/n> ";cin>>ulang;
-	}while(ulang == "y");
+		cout<<" \n Ulangi ke menu beranda? <y/n> ";cin>>ulang1;
+	}while(ulang1 == "y");
 	cout<<endl;
 	system("pause");
-	
 	return(menu);
 }
 
@@ -176,6 +222,7 @@ void login(){
 		}
 	}
 }
+
 ///////////////// MAIN FUNCITON ////////////////////
 int main(){
 	string logout;
